@@ -88,8 +88,8 @@ export default function DashboardLayout({
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === '/dashboard'}>
-                      <a href='/dashboard'>
+                    <SidebarMenuButton asChild isActive={pathname === '/admin/dashboard'}>
+                      <a href='/admin/dashboard'>
                         <HomeIcon />
                         <span>Dashboard</span>
                       </a>
@@ -105,8 +105,8 @@ export default function DashboardLayout({
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname.startsWith('/members')}>
-                      <a href='/members'>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin/members')}>
+                      <a href='/admin/members'>
                         <UsersIcon />
                         <span>Members</span>
                       </a>
@@ -119,8 +119,8 @@ export default function DashboardLayout({
                   </SidebarMenuItem>
 
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname.startsWith('/books')}>
-                      <a href='/books'>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin/books')}>
+                      <a href='/admin/books'>
                         <BookOpenIcon />
                         <span>Books</span>
                       </a>
@@ -133,8 +133,8 @@ export default function DashboardLayout({
                   </SidebarMenuItem>
 
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname.startsWith('/categories')}>
-                      <a href='/categories'>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin/categories')}>
+                      <a href='/admin/categories'>
                         <BookmarkIcon />
                         <span>Categories</span>
                       </a>
@@ -150,8 +150,8 @@ export default function DashboardLayout({
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === '/transactions'}>
-                      <a href='/transactions'>
+                    <SidebarMenuButton asChild isActive={pathname === '/admin/transactions'}>
+                      <a href='/admin/transactions'>
                         <RefreshCwIcon />
                         <span>All Transactions</span>
                       </a>
@@ -159,8 +159,8 @@ export default function DashboardLayout({
                   </SidebarMenuItem>
 
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === '/transactions/borrow'}>
-                      <a href='/transactions/borrow'>
+                    <SidebarMenuButton asChild isActive={pathname === '/admin/transactions/borrow'}>
+                      <a href='/admin/transactions/borrow'>
                         <ScanBarcodeIcon />
                         <span>Borrow Book</span>
                       </a>
@@ -168,8 +168,8 @@ export default function DashboardLayout({
                   </SidebarMenuItem>
 
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === '/transactions/return'}>
-                      <a href='/transactions/return'>
+                    <SidebarMenuButton asChild isActive={pathname === '/admin/transactions/return'}>
+                      <a href='/admin/transactions/return'>
                         <TrendingUpIcon />
                         <span>Return Book</span>
                       </a>
@@ -177,8 +177,8 @@ export default function DashboardLayout({
                   </SidebarMenuItem>
 
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname === '/transactions/overdue'}>
-                      <a href='/transactions/overdue'>
+                    <SidebarMenuButton asChild isActive={pathname === '/admin/transactions/overdue'}>
+                      <a href='/admin/transactions/overdue'>
                         <AlertCircleIcon />
                         <span>Overdue</span>
                       </a>
@@ -199,8 +199,8 @@ export default function DashboardLayout({
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname.startsWith('/reviews')}>
-                      <a href='/reviews'>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin/reviews')}>
+                      <a href='/admin/reviews'>
                         <MessageSquareIcon />
                         <span>Reviews</span>
                       </a>
@@ -208,8 +208,8 @@ export default function DashboardLayout({
                   </SidebarMenuItem>
 
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname.startsWith('/favorites')}>
-                      <a href='/favorites'>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin/favorites')}>
+                      <a href='/admin/favorites'>
                         <StarIcon />
                         <span>Favorites</span>
                       </a>
@@ -225,8 +225,8 @@ export default function DashboardLayout({
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname.startsWith('/reports')}>
-                      <a href='/reports'>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin/reports')}>
+                      <a href='/admin/reports'>
                         <BarChart3Icon />
                         <span>Reports</span>
                       </a>
@@ -234,8 +234,8 @@ export default function DashboardLayout({
                   </SidebarMenuItem>
 
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname.startsWith('/settings')}>
-                      <a href='/settings'>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin/settings')}>
+                      <a href='/admin/settings'>
                         <SettingsIcon />
                         <span>Settings</span>
                       </a>
@@ -257,7 +257,7 @@ export default function DashboardLayout({
                 <Breadcrumb className='hidden sm:block'>
                   <BreadcrumbList>
                     <BreadcrumbItem>
-                      <BreadcrumbLink href='/dashboard'>Home</BreadcrumbLink>
+                      <BreadcrumbLink href='/admin/dashboard'>Home</BreadcrumbLink>
                     </BreadcrumbItem>
                     {breadcrumbs.map((crumb, index) => (
                       <div key={index} className='flex items-center'>
