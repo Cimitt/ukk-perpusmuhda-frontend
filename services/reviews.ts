@@ -7,9 +7,7 @@ import type {
 } from '@/types'
 
 export const reviewService = {
-  /**
-   * List all reviews with filters
-   */
+  // list reviews
   async list(params?: {
     search?: string
     book?: string
@@ -23,40 +21,30 @@ export const reviewService = {
     return data
   },
 
-  /**
-   * Create new review
-   */
+  // create review
   async create(reviewData: CreateReviewData): Promise<Review> {
     const { data } = await api.post<Review>('/reviews/', reviewData)
     return data
   },
 
-  /**
-   * Get review detail
-   */
+  // get review detail
   async get(id: string): Promise<Review> {
     const { data } = await api.get<Review>(`/reviews/${id}/`)
     return data
   },
 
-  /**
-   * Update review
-   */
+  // update review
   async update(id: string, updates: Partial<CreateReviewData>): Promise<Review> {
     const { data } = await api.patch<Review>(`/reviews/${id}/`, updates)
     return data
   },
 
-  /**
-   * Delete review
-   */
+  // delete review
   async delete(id: string): Promise<void> {
     await api.delete(`/reviews/${id}/`)
   },
 
-  /**
-   * Get all reviews for a specific book with stats
-   */
+  // get all reviews for a specific book
   async getBookReviews(bookId: string): Promise<BookReviewsResponse> {
     const { data } = await api.get<BookReviewsResponse>(`/reviews/book/${bookId}/`)
     return data

@@ -11,9 +11,7 @@ import type {
 } from '@/types'
 
 export const favoriteService = {
-  /**
-   * List all favorites with filters
-   */
+  // list favorites
   async list(params?: {
     search?: string
     member?: string
@@ -25,48 +23,36 @@ export const favoriteService = {
     return data
   },
 
-  /**
-   * Create new favorite
-   */
+  // create favorite
   async create(favoriteData: CreateFavoriteData): Promise<Favorite> {
     const { data } = await api.post<Favorite>('/favorites/', favoriteData)
     return data
   },
 
-  /**
-   * Get favorite detail
-   */
+  // get favorite detail
   async get(id: string): Promise<Favorite> {
     const { data } = await api.get<Favorite>(`/favorites/${id}/`)
     return data
   },
 
-  /**
-   * Delete favorite
-   */
+  // delete favorite
   async delete(id: string): Promise<void> {
     await api.delete(`/favorites/${id}/`)
   },
 
-  /**
-   * Toggle favorite (add if not exists, remove if exists)
-   */
+  // toggle favorite (add/remove)
   async toggle(toggleData: ToggleFavoriteData): Promise<ToggleFavoriteResponse> {
     const { data } = await api.post<ToggleFavoriteResponse>('/favorites/toggle/', toggleData)
     return data
   },
 
-  /**
-   * Get all favorites for a specific member
-   */
+  // get all favorites for a specific member
   async getMemberFavorites(memberId: string): Promise<MemberFavoritesResponse> {
     const { data } = await api.get<MemberFavoritesResponse>(`/favorites/member/${memberId}/`)
     return data
   },
 
-  /**
-   * Get favorite count for a specific book
-   */
+  // get total favorite count for a specific book
   async getBookFavoriteCount(bookId: string): Promise<{
     book_id: string
     favorite_count: number

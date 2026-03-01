@@ -31,7 +31,7 @@ export function LoginForm() {
       const data = await authService.login({ username, password})
       console.log("Login Succes", data)
 
-      window.location.href = "/dashboard"
+      window.location.href = "/admin"
     }
     
     catch (err: any) {

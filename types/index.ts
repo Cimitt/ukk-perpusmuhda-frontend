@@ -75,6 +75,10 @@ export interface Member {
   id: string
   nis: string
   name: string
+  first_name: string
+  last_name: string
+  full_name: string
+  phone?: number
   email: string
   grade: string
   photo?: string
@@ -108,18 +112,19 @@ export interface MemberStats {
 
 // ── Books ─────────────────────────────────────────────────────────────────────
 export interface Category {
-  id: string
+  id: number
   name: string
   book_count: number
   created_at: string
 }
 
 export interface Book {
-  id: string
+  id: number
   barcode_number: string
   barcode_image?: string
+  isbn?: string
   title: string
-  category: string
+  category: number
   category_name: string
   author: string
   publisher: string
@@ -138,13 +143,14 @@ export interface Book {
 export interface CreateBookData {
   barcode_number: string
   title: string
-  category: string
+  category: number
   author: string
   publisher: string
   published_year: number
   cover_image?: File
   description?: string
   stock?: number
+  isbn?: string
 }
 
 export interface BookStats {

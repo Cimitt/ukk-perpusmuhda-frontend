@@ -8,11 +8,9 @@ import type {
 } from '@/types'
 
 export const bookService = {
-  // ── Books ───────────────────────────────────────────────────────────────────
+  // books
 
-  /**
-   * List all books with optional filters
-   */
+  // list books
   async list(params?: {
     search?: string
     category?: string
@@ -25,48 +23,60 @@ export const bookService = {
     return data
   },
 
-  /**
-   * Create new book
-   */
+  // create book
   async create(bookData: CreateBookData): Promise<Book> {
-    const formData = new FormData()
-    formData.append('barcode_number', bookData.barcode_number)
-    formData.append('title', bookData.title)
-    formData.append('category', bookData.category)
-    formData.append('author', bookData.author)
-    formData.append('publisher', bookData.publisher)
-    formData.append('published_year', String(bookData.published_year))
-    if (bookData.description) {
-      formData.append('description', bookData.description)
-    }
-    if (bookData.stock !== undefined) {
-      formData.append('stock', String(bookData.stock))
-    }
-    if (bookData.cover_image) {
-      formData.append('cover_image', bookData.cover_image)
-    }
+  const formData = new FormData()
+  
+  // Required fields
+  formData.append('barcode_number', bookData.barcode_number)
+  formData.append('title', bookData.title)
+  formData.append('category', String(bookData.category))
+  formData.append('author', bookData.author)
+  formData.append('publisher', bookData.publisher)
+  formData.append('year_published', String(bookData.published_year))
+  
+  // Optional fields - only append if they have values
+  if (bookData.isbn && bookData.isbn.trim()) {
+    formData.append('isbn', bookData.isbn)
+  }
+  if (bookData.description && bookData.description.trim()) {
+    formData.append('description', bookData.description)
+  }
+  if (bookData.stock !== undefined && bookData.stock !== null) {
+    formData.append('stock', String(bookData.stock))
+  }
+  if (bookData.cover_image) {
+    formData.append('cover_image', bookData.cover_image)
+  }
 
-    const { data } = await api.post<Book>('/books/', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
-    return data
-  },
+  // Debug log
+  console.log('FormData contents:')
+  for (let [key, value] of formData.entries()) {
+    console.log(`${key}:`, value)
+  }
 
-  /**
-   * Get book detail
-   */
-  async get(id: string): Promise<Book> {
+  const { data } = await api.post<Book>('/books/', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
+  return data
+},
+
+  // get book detail
+  async get(id: number): Promise<Book> {
     const { data } = await api.get<Book>(`/books/${id}/`)
     return data
   },
 
-  /**
-   * Update book
-   */
-  async update(id: string, updates: Partial<CreateBookData>): Promise<Book> {
+  // update book
+  async update(id: number, updates: Partial<CreateBookData>): Promise<Book> {
     const formData = new FormData()
+
     Object.entries(updates).forEach(([key, value]) => {
-      if (value !== undefined) {
+      if (
+        value !== undefined &&
+        value !== null &&
+        !(typeof value === 'string' && value.trim() === '')
+      ) {
         if (value instanceof File) {
           formData.append(key, value)
         } else {
@@ -81,25 +91,19 @@ export const bookService = {
     return data
   },
 
-  /**
-   * Delete book
-   */
-  async delete(id: string): Promise<void> {
+  // delete book
+  async delete(id: number): Promise<void> {
     await api.delete(`/books/${id}/`)
   },
 
-  /**
-   * Look up book by barcode number (for scanner)
-   */
+  // Get book by barcode number
   async getByBarcode(barcodeNumber: string): Promise<Book> {
     const { data } = await api.get<Book>(`/books/barcode/${barcodeNumber}/`)
     return data
   },
 
-  /**
-   * Regenerate barcode image for a book
-   */
-  async regenerateBarcode(id: string): Promise<{
+  // Regenerate barcode for a book (admin action)
+  async regenerateBarcode(id: number): Promise<{
     detail: string
     barcode_image?: string
   }> {
@@ -107,55 +111,43 @@ export const bookService = {
     return data
   },
 
-  /**
-   * Get book inventory statistics
-   */
+  // stats
   async getStats(): Promise<BookStats> {
     const { data } = await api.get<BookStats>('/books/stats/')
     return data
   },
 
-  // ── Categories ──────────────────────────────────────────────────────────────
+  // category
 
-  /**
-   * List all categories
-   */
+  // list categories
   async listCategories(params?: {
     search?: string
     ordering?: string
   }): Promise<Category[]> {
     const { data } = await api.get<Category[]>('/books/categories/', { params })
-    return data
+    return Array.isArray(data) ? data : []
   },
 
-  /**
-   * Create category
-   */
+  // create category
   async createCategory(name: string): Promise<Category> {
     const { data } = await api.post<Category>('/books/categories/', { name })
     return data
   },
 
-  /**
-   * Get category detail
-   */
-  async getCategory(id: string): Promise<Category> {
+  // get category detail
+  async getCategory(id: number): Promise<Category> {
     const { data } = await api.get<Category>(`/books/categories/${id}/`)
     return data
   },
 
-  /**
-   * Update category
-   */
-  async updateCategory(id: string, name: string): Promise<Category> {
+  //  update category
+  async updateCategory(id: number, name: string): Promise<Category> {
     const { data } = await api.patch<Category>(`/books/categories/${id}/`, { name })
     return data
   },
 
-  /**
-   * Delete category
-   */
-  async deleteCategory(id: string): Promise<void> {
+  // delete category
+  async deleteCategory(id: number): Promise<void> {
     await api.delete(`/books/categories/${id}/`)
   },
 }

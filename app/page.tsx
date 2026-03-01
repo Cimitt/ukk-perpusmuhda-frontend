@@ -82,11 +82,11 @@ const navigationData: NavigationSection[] = [
 ]
 
 const menudata = [
-  { id: 1, img: '/1.png', imgAlt: 'plate-1', userComment: 'review 1.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-56.png' },
-  { id: 2, img: '/1.png', imgAlt: 'plate-2', userComment: 'review 2.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-46.png' },
-  { id: 3, img: '/1.png', imgAlt: 'plate-3', userComment: 'review 3.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-57.png' },
-  { id: 4, img: '/1.png', imgAlt: 'plate-4', userComment: 'review 4.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-58.png' },
-  { id: 5, img: '/1.png', imgAlt: 'plate-3', userComment: 'review 5.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-57.png' },
+  { id: 1, img: '/1.png', imgAlt: 'plate-1', userComment: 'author 1.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-56.png' },
+  { id: 2, img: '/1.png', imgAlt: 'plate-2', userComment: 'author 2.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-46.png' },
+  { id: 3, img: '/1.png', imgAlt: 'plate-3', userComment: 'author 3.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-57.png' },
+  { id: 4, img: '/1.png', imgAlt: 'plate-4', userComment: 'author 4.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-58.png' },
+  { id: 5, img: '/1.png', imgAlt: 'plate-3', userComment: 'author 5.', userAvatar: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-57.png' },
 ]
 
 function Blob({ className, color = '#c8e6c9' }: { className?: string; color?: string }) {

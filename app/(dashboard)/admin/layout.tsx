@@ -89,7 +89,7 @@ export default function DashboardLayout({
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild isActive={pathname === '/admin/dashboard'}>
-                      <a href='/admin/dashboard'>
+                      <a href='/admin/'>
                         <HomeIcon />
                         <span>Dashboard</span>
                       </a>
@@ -257,7 +257,7 @@ export default function DashboardLayout({
                 <Breadcrumb className='hidden sm:block'>
                   <BreadcrumbList>
                     <BreadcrumbItem>
-                      <BreadcrumbLink href='/admin/dashboard'>Home</BreadcrumbLink>
+                      <BreadcrumbLink href='/admin/'>Home</BreadcrumbLink>
                     </BreadcrumbItem>
                     {breadcrumbs.map((crumb, index) => (
                       <div key={index} className='flex items-center'>

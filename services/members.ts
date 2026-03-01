@@ -9,23 +9,19 @@ import type {
 } from '@/types'
 
 export const memberService = {
-  /**
-   * List all members with optional filters
-   */
+  // list
   async list(params?: {
     search?: string
     grade?: string
-    is_active?: boolean
+    is_active?: boolean | string
     ordering?: string
     page?: number
   }): Promise<PaginatedResponse<Member>> {
-    const { data } = await api.get<PaginatedResponse<Member>>('/members/', { params })
+    const { data } = await api.get<PaginatedResponse<Member>>('/auth/members/', { params })
     return data
   },
 
-  /**
-   * Create new member
-   */
+  // create
   async create(memberData: CreateMemberData): Promise<Member> {
     const formData = new FormData()
     formData.append('nis', memberData.nis)
@@ -36,24 +32,19 @@ export const memberService = {
     if (memberData.photo) {
       formData.append('photo', memberData.photo)
     }
-
-    const { data } = await api.post<Member>('/members/', formData, {
+    const { data } = await api.post<Member>('/auth/members/', formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     return data
   },
 
-  /**
-   * Get member detail with statistics
-   */
+  // get detail
   async get(id: string): Promise<MemberDetail> {
-    const { data } = await api.get<MemberDetail>(`/members/${id}/`)
+    const { data } = await api.get<MemberDetail>(`/auth/members/${id}/`)
     return data
   },
 
-  /**
-   * Update member
-   */
+  // update
   async update(id: string, updates: Partial<CreateMemberData>): Promise<Member> {
     const formData = new FormData()
     Object.entries(updates).forEach(([key, value]) => {
@@ -65,35 +56,34 @@ export const memberService = {
         }
       }
     })
-
-    const { data } = await api.patch<Member>(`/members/${id}/`, formData, {
+    const { data } = await api.patch<Member>(`/auth/members/${id}/`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
     return data
   },
 
-  /**
-   * Deactivate member (soft delete)
-   */
+  // deactivate
   async deactivate(id: string): Promise<{ detail: string }> {
-    const { data } = await api.delete(`/members/${id}/`)
+    const { data } = await api.delete(`/auth/members/${id}/`)
     return data
   },
 
-  /**
-   * Get member's borrow history
-   */
+  // reset pw
+  async resetPassword(id: string, new_password: string): Promise<{ detail: string }> {
+    const { data } = await api.post(`/auth/users/${id}/reset-password/`, { new_password })
+    return data
+  },
+
+  // get borrow history
   async getBorrowHistory(id: string): Promise<{
     member: MemberDetail
     transactions: Transaction[]
   }> {
-    const { data } = await api.get(`/members/${id}/history/`)
+    const { data } = await api.get(`/auth/members/${id}/history/`)
     return data
   },
 
-  /**
-   * Get member statistics
-   */
+  // get member stat
   async getStats(): Promise<MemberStats> {
     const { data } = await api.get<MemberStats>('/auth/members/stats/')
     return data
