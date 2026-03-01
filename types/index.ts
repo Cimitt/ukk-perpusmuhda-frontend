@@ -1,4 +1,4 @@
-export type UserRole = 'ADMIN' | 'STAFF'
+export type UserRole = 'ADMIN' | 'STAFF' | 'MEMBER'
 export type BookStatus = 'available' | 'unavailable'
 export type TransactionStatus = 'borrowed' | 'returned' | 'overdue'
 export type ScanMethod = 'scanner' | 'manual_input'
