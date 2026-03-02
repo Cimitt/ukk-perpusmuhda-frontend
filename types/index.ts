@@ -181,7 +181,7 @@ export interface Transaction {
   fine_per_day: number
   fine_total: number
   notes: string
-  processed_by: string
+  processed_by_name: string
   is_overdue: boolean
   overdue_days: number
   created_at: string
