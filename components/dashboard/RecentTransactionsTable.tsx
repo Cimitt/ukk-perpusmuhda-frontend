@@ -85,15 +85,6 @@ const columns: ColumnDef<Transaction>[] = [
     },
   },
   {
-    accessorKey: 'borrow_scan_method',
-    header: 'Scan Method',
-    cell: ({ row }) => (
-      <span className='text-xs text-muted-foreground'>
-        {row.original.borrow_scan_method === 'scanner' ? '📷 Scanner' : '⌨️ Manual'}
-      </span>
-    ),
-  },
-  {
     id: 'actions',
     header: 'Actions',
     cell: ({ row }) => <RowActions transaction={row.original} />,

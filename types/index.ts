@@ -188,6 +188,18 @@ export interface Transaction {
   updated_at: string
 }
 
+export interface PendingReturn {
+  barcode: string
+  status: 'pending' | 'success' | 'failed'
+  book?: {
+    title: string
+    isbn?: string
+    cover_image?: string
+  }
+  fine_amount?: number
+  error?: string
+}
+
 export interface BorrowBookData {
   barcode_number: string
   member_id: string
@@ -199,11 +211,9 @@ export interface BorrowBookData {
 }
 
 export interface ReturnBookData {
-  barcode_number: string
-  member_id: string
-  scan_method?: ScanMethod
+  barcode: string
+  member_id?: number
   notes?: string
-  processed_by?: string
 }
 
 export interface ReturnBookResponse {
